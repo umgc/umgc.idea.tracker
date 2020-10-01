@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.umgc</groupId>
-	<artifactId>CaPPMS</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>CaPPMS</name>
+	<artifactId>CAPPMS</artifactId>
+    <version>1.0.0</version>
+	<name>CAPPMS</name>
 	<description>Capstone Project Proposal Management System</description>
 
 	<properties>
