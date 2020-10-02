@@ -8,33 +8,33 @@ trigger:
 - master
 
 pool:
-    vmImage: 'ubuntu-20.04'
+  vmImage: 'ubuntu-20.04'
 
 variables:
-    isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
 - task: CmdLine@2
-    inputs:
+  inputs:
     script: 'make all' 
 
 - task: PublishTestResults@2
-    inputs:
+  inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     failTaskOnFailedTests: true
 
 - task: CmdLine@2
-    inputs:
+  inputs:
     script: 'make image'
 
 - task: CmdLine@2
-    condition: and(succeeded(), eq(variables.isMain, true))
-    inputs:
+  condition: and(succeeded(), eq(variables.isMain, true))
+  inputs:
     script: 'docker login $(Host) -u $(Username) -p $(Password)'
     
 - task: CmdLine@2
-    condition: and(succeeded(), eq(variables.isMain, true))
-    inputs:
+  condition: and(succeeded(), eq(variables.isMain, true))
+  inputs:
     script: 'make push'
     
