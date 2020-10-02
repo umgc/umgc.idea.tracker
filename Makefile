@@ -31,7 +31,7 @@ ifdef SKIP_TESTS
 endif
 
 # PHONY
-.PHONY: all image start clean
+.PHONY: all image start clean push
 
 ##############################################################
 #	make all:
@@ -76,3 +76,12 @@ start:
 clean:
 	@mvn $(MAVEN_OPTS) clean -f pom.xml
 
+##############################################################
+#	make push:
+#		This recipe pushes the Docker vlol application to the
+#		Azure container registry 
+#
+##############################################################
+push:
+	docker tag $(APP_IMG) $(REMOTE_IMG)
+	docker push $(REMOTE_IMG)
