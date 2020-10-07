@@ -13,13 +13,13 @@ public class CaPpmsApplication {
 		SpringApplication.run(CaPpmsApplication.class, args);
 	}
 	
-	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-		return args -> {
-
-			System.out.println("Welcome to UMGC Capstone Project Proposal Management System");
-
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+//		return args -> {
+//
+//			System.out.println("Welcome to UMGC Capstone Project Proposal Management System");
+//
+//		};
+//	}
 
 }

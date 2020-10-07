@@ -34,48 +34,58 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		
+		</dependency>		
 		<dependency>
-                    	<groupId>poi</groupId>
-                	<artifactId>poi</artifactId>
-                    	<version>4.1.2</version>
-                    	<type>jar</type>
-                </dependency>
-        
-                <dependency>
-                   <groupId>poi-ooxml</groupId>
-                   <artifactId>poi-ooxml</artifactId>
-                   <version>4.1.2</version>
-                   <type>jar</type>
-                </dependency>
-        
-                <dependency>
-                   <groupId>poi-ooxml-schemas</groupId>
-                   <artifactId>poi-ooxml-schemas</artifactId>
-                   <version>4.1.2</version>
-                   <type>jar</type>
-                </dependency>
-                
-            <dependency>
-                <groupId>org.apache.xmlbeans</groupId>
-                <artifactId>xmlbeans</artifactId>
-                <version>3.1.0</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-compress</artifactId>
-                <version>1.19</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>4.4</version>
-            </dependency>
-		
-		
+      <groupId>poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>4.1.2</version>
+      <type>jar</type>
+    </dependency>
+
+    <dependency>
+       <groupId>poi-ooxml</groupId>
+       <artifactId>poi-ooxml</artifactId>
+       <version>4.1.2</version>
+       <type>jar</type>
+    </dependency>
+
+    <dependency>
+       <groupId>poi-ooxml-schemas</groupId>
+       <artifactId>poi-ooxml-schemas</artifactId>
+       <version>4.1.2</version>
+       <type>jar</type>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.xmlbeans</groupId>
+        <artifactId>xmlbeans</artifactId>
+        <version>3.1.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-compress</artifactId>
+        <version>1.19</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>4.4</version>
+    </dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
