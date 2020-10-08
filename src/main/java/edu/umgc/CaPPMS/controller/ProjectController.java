@@ -1,4 +1,5 @@
 package edu.umgc.CaPPMS.controller;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,5 +113,16 @@ public class ProjectController {
 
 		return result;
 
+	}
+	
+	@RequestMapping("/exportTest")
+	public String exportTest()
+	{
+		try {
+			ExportController.exportWord();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return "successfully exported.";
 	}
 }
