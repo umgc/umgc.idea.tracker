@@ -129,7 +129,14 @@ public class Users {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return String.format(
+				"User [U_ID=%s, firstName=%s, lastName=%s, phoneNumber=%s, email=%s, userType=%s, Title=%s, Website=%s, emplID=%s]",
+				id, first_name, last_name, phone_number, email, user_type, title, website, empl_id);
+	}
+
+
 	
 	
 	
