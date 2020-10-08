@@ -27,6 +27,10 @@ public class Project {
 	@Column(name ="comment")
 	private String comment;
 	
+	@Column(name = "project_status_id")
+	private String projectStatusId;
+	
+
 	public Project() {
 		
 		
@@ -69,7 +73,19 @@ public class Project {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	public String getProjectStatusId() {
+		return projectStatusId;
+	}
+
+	public void setProjectStatusId(String projectStatusId) {
+		this.projectStatusId = projectStatusId;
+	}
 	
-	
+	@Override
+	public String toString() {
+		return String.format(
+				"Project [p_id=%s, projectTitle=%s, projectDescription=%s, projectWebsite=%s, projectStatusId=%s, comments=%s]",
+				id, project_title, project_description, project_website, projectStatusId, comment);
+	}
 
 }
