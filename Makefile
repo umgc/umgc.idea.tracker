@@ -15,6 +15,7 @@ APP_TAG=$(VERSION)
 APP_IMG=$(APP_NAME):$(APP_TAG)
 REMOTE_IMG:=docker.io/umgccaps/$(APP_IMG)
 BUILD_IMG=docker.io/umgccaps/advance-development-factory:latest
+BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 
 # Maven options
 MAVEN_OPTS:=-Dversion=$(VERSION)
@@ -31,7 +32,7 @@ ifdef SKIP_TESTS
 endif
 
 # PHONY
-.PHONY: all image start clean push
+.PHONY: all image start clean push sonar
 
 ##############################################################
 #	make all:
@@ -48,6 +49,10 @@ all:
 # This internal recipe is used by build to create the cappms versioned jar
 target/$(CAPPMS_JAR):	
 	mvn $(MAVEN_OPTS) package -f pom.xml
+
+sonar:
+	docker run -v $(PWD)/:/repo --entrypoint '/bin/bash' $(BUILD_IMG) \
+		-c 'cd /repo &&	mvn verify sonar:sonar -Dsonar.branch.name=$(BRANCH)'
 
 ##############################################################
 #	make image:
