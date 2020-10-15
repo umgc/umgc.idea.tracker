@@ -16,8 +16,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.umgc.CaPPMS.dto.StatusProjectRequest;
+import edu.umgc.CaPPMS.dto.StatusProjectResponse;
+import edu.umgc.CaPPMS.dto.Usr_TypeUsersRequest;
+import edu.umgc.CaPPMS.dto.Usr_TypeUsersResponse;
+
 import edu.umgc.CaPPMS.exception.ResourceNotFoundException;
+import edu.umgc.CaPPMS.model.Status;
 import edu.umgc.CaPPMS.model.Usr_Type;
+import edu.umgc.CaPPMS.repository.UsersRepository;
 import edu.umgc.CaPPMS.repository.Usr_TypeRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,6 +35,8 @@ public class Usr_TypeController {
 	@Autowired
 	private Usr_TypeRepository usr_typeRepository;
 	
+	@Autowired
+    private UsersRepository usersRepository;
 	
 	//get all user_Types
 	@GetMapping("/usr_type")
@@ -74,4 +83,18 @@ public class Usr_TypeController {
 				
 	}
 	
+	@PostMapping("/submitUsersWithTypes")
+    public Usr_Type placeOrder(@RequestBody Usr_TypeUsersRequest request){
+       return usr_typeRepository.save(request.getUsr_type());
+    }
+
+    @GetMapping("/findUsersWithTypes")
+    public List<Usr_Type> findAllOrders(){
+        return usr_typeRepository.findAll();
+    }
+
+//    @GetMapping("/getUsersWithTypes")
+//    public List<Usr_TypeUsersResponse> getJoinInformation(){
+//        return usr_typeRepository.getJoinInformation();
+//    }
 }

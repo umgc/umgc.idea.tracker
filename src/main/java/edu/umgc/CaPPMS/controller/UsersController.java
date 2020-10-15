@@ -37,37 +37,37 @@ public class UsersController {
 	}
 	//create Project
 	@PostMapping("/users")
-	public Users createProject(@RequestBody Users user) {
-		return usersRepository.save(user);
+	public Users createProject(@RequestBody Users users) {
+		return usersRepository.save(users);
 	}
 	//get user by id
 	@GetMapping("/users/{id}")
 	public ResponseEntity<Users> getProjectById(@PathVariable Long id) {
 		
-		Users  user = usersRepository.findById(id)
+		Users  users = usersRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id:"+id));
-		return ResponseEntity.ok(user);
+		return ResponseEntity.ok(users);
 		
 	}
 	//Update user
-	@PutMapping("/users/{id}")
-	public ResponseEntity<Users> updateProject(@PathVariable Long id, @RequestBody Users userDetails){
-		Users user = usersRepository.findById(id)
+	@PutMapping("/user/{id}")
+	public ResponseEntity<Users> updateProject(@PathVariable Long id, @RequestBody Users usersDetails){
+		Users users = usersRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
 		
-		user.setFirst_name(userDetails.getFirst_name());
-		user.setLast_name(userDetails.getLast_name());
-		user.setPhone_number(userDetails.getPhone_number());
-		user.setEmail(userDetails.getEmail());
-		user.setUser_type(userDetails.getUser_type());
-		user.setTitle(userDetails.getTitle());
-		user.setWebsite(userDetails.getWebsite());
-		user.setEmpl_id(userDetails.getEmpl_id());
+		users.setFirst_name(usersDetails.getFirst_name());
+		users.setLast_name(usersDetails.getLast_name());
+		users.setPhone_number(usersDetails.getPhone_number());
+		users.setEmail(usersDetails.getEmail());
+		//users.setUser_type(usersDetails.getUser_type());
+		users.setTitle(usersDetails.getTitle());
+		users.setWebsite(usersDetails.getWebsite());
+		users.setEmpl_id(usersDetails.getEmpl_id());
 		
 		
 		
-		Users updatedUser = usersRepository.save(user);
-		return ResponseEntity.ok(updatedUser);
+		Users updatedUsers = usersRepository.save(users);
+		return ResponseEntity.ok(updatedUsers);
 	}
 	
 	// delete user

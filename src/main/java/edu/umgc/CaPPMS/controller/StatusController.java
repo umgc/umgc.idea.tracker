@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.umgc.CaPPMS.dto.StatusProjectRequest;
+import edu.umgc.CaPPMS.dto.StatusProjectResponse;
+
 import edu.umgc.CaPPMS.exception.ResourceNotFoundException;
 import edu.umgc.CaPPMS.model.Status;
+import edu.umgc.CaPPMS.repository.ProjectRepository;
 import edu.umgc.CaPPMS.repository.StatusRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,6 +32,9 @@ public class StatusController {
 	@Autowired
 	private StatusRepository statusRepository;
 	
+	
+	@Autowired
+    private ProjectRepository projectRepository;
 	
 	//get all statuses
 	@GetMapping("/status")
@@ -73,5 +80,21 @@ public class StatusController {
 		return ResponseEntity.ok(response);
 				
 	}
+	
+	@PostMapping("/submitProjects")
+    public Status placeOrder(@RequestBody StatusProjectRequest request){
+       return statusRepository.save(request.getStatus());
+    }
+
+    @GetMapping("/findAllOrders")
+    public List<Status> findAllOrders(){
+        return statusRepository.findAll();
+    }
+
+    @GetMapping("/getInfo")
+    public List<StatusProjectResponse> getJoinInformation(){
+        return statusRepository.getJoinInformation();
+    }
+	
 	
 }
