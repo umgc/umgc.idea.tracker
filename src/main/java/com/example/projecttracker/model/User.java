@@ -44,7 +44,11 @@ public class User {
 	@Column(name ="title")
 	private String title;
 	
+	@Column(name ="website")
+	private String website;
 	
+	@Column(name ="empl_id")
+	private String empl_id;
 	  
 
 	public User(String first_name, String last_name, String phone_number, String email, long user_type, String title,
@@ -56,6 +60,8 @@ public class User {
 		this.email = email;
 		this.user_type = user_type;
 		this.title = title;
+		this.website = website;
+		this.empl_id = empl_id;
 		
 	}
 	
@@ -118,6 +124,28 @@ public class User {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getEmpl_id() {
+		return empl_id;
+	}
+
+	public void setEmpl_id(String empl_id) {
+		this.empl_id = empl_id;
+	}
+		
+		@Override
+		public String toString() {
+			return String.format(
+					"User [U_ID=%s, firstName=%s, lastName=%s, phoneNumber=%s, email=%s, userType=%s, Title=%s, Website=%s, emplID=%s]",
+					id, first_name, last_name, phone_number, email, user_type, title, website, empl_id);
+		}
 	//bi-directional many-to-one
 //    @OneToMany(targetEntity = Project.class,cascade = CascadeType.ALL)
 //    @JoinColumn(name ="up_fk",referencedColumnName = "id")

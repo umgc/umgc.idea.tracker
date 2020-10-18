@@ -1,5 +1,6 @@
 package com.example.projecttracker.controller;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projecttracker.exception.ResourceNotFoundException;
@@ -76,4 +78,49 @@ public class ProjectController {
 				
 	}
 	
+
+
+	@RequestMapping("/save")
+	public  String addAccount(){    
+//		userRepository.save(new Users ("John","David","3018887777","Jdavid@yahoo.com","Professor","PHD","www.umuc.edu",10));       
+//		projectRepository.save(new Project ("Project Proposal Tracker","A web applicaiton to be used as a traking tool for project proposals", "www.project.com","approved","ready for export"));   
+		return "Data Successfully Updated";
+	}
+
+	@RequestMapping("/saveProject")
+	public  String addProject(){ 
+//		projectRepository.save(new Project ("Project Tracker","A web applicaiton to be used as a traking tool for project proposals", "www.project.com","approved","ready for export"));   
+		return "Data Successfully Updated";
+	}
+
+	@RequestMapping("/findallProjects")
+	public String findAll(){
+		String result = "";
+
+		for(Project cust : projectRepository.findAll()){
+			result += cust.toString() + "<br>";
+		}
+		return result;
+	}
+
+
+	@RequestMapping("/findbyProjectid")
+	public String findById(@RequestParam("id") long p_id){
+		String result = "";
+		result = projectRepository.findById(p_id).toString();
+
+		return result;
+
+	}
+	
+	@RequestMapping("/exportTest")
+	public String exportTest()
+	{
+		try {
+			ExportController.exportWord();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return "successfully exported.";
+	}
 }

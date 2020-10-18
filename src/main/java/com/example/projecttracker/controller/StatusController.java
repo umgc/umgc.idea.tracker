@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projecttracker.dto.StatusProjectRequest;
+import com.example.projecttracker.dto.StatusProjectResponse;
 import com.example.projecttracker.exception.ResourceNotFoundException;
 import com.example.projecttracker.model.Status;
 import com.example.projecttracker.repository.ProjectRepository;
@@ -88,7 +89,12 @@ public class StatusController {
         return statusRepository.findAll();
     }
 
-    
+
+    @GetMapping("/getInfo")
+    public List<StatusProjectResponse> getJoinInformation(){
+        return statusRepository.getJoinInformation();
+    }
+	   
 	
 	
 }
