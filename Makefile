@@ -90,3 +90,28 @@ clean:
 push:
 	docker tag $(APP_IMG) $(REMOTE_IMG)
 	docker push $(REMOTE_IMG)
+
+# This prints make commands and usage
+help:
+	@$(info For new environment setup follow the below steps)
+	@$(info Prerequisites: )
+	@$(info 1. GNU Make version 3.82)
+	@$(info 1. Docker version 19.03.12)
+	@$(info -----------------------------------------------------------------------------------------------------------)
+	@$(info 2. make all:          Creates the VLOL application using the Docker image created in the previous step.)
+	@$(info 2. make image:   Creates a VLOL Docker image from the artifact created in the previous step.)
+	@$(info 3. make start:   Starts the VLOL Docker image.)
+	@$(info -----------------------------------------------------------------------------------------------------------)
+	@$(info )
+	@$(info Azure development deployment steps)
+	@$(info 1. make build-env:     Only needed if user has not previously done so)
+	@$(info 2. make start-env:     Starts the build-env Docker context)
+	@$(info 1. az login            Navigate to the url and enter the code from the CLI output)
+	@$(info 2. make dev-deploy     This creates a container instances with the VLOL application deployed)
+	@$(info )
+	@$(info Optional CLI)
+	@$(info SKIP_TESTS=y/n        Skips running unit tests)
+	@$(info REMOTE_IMG=y/n        Overrides Docker image to deploy to Azure container instances)
+	@$(info )
+	@$(info Available Make commands)
+	@cat Makefile | sed -n -e '/####/,/#####/ p' | grep -v '###' | sed -e 's/#//g' | grep -v Makefile|grep -v help
