@@ -22,7 +22,7 @@ import com.example.projecttracker.exception.ResourceNotFoundException;
 import com.example.projecttracker.model.Project;
 import com.example.projecttracker.repository.ProjectRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/")
 public class ProjectController {
