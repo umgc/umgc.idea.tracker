@@ -28,4 +28,13 @@ public class Account
 	@OneToOne
 	private User user;
 	
+	
+	public Account(String username, String password, boolean enabled)
+	{
+		super();
+		this.username = username;
+		this.password = password;
+		this.isEnabled = enabled;
+	}
+	
 }

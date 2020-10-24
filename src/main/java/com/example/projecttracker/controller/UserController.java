@@ -48,6 +48,7 @@ public class UserController {
 	//create Project
 	@PostMapping("/user")
 	public User createProject(@RequestBody User user) {
+		
 		return userRepository.save(user);
 	}
 	//get user by id
@@ -97,6 +98,8 @@ public class UserController {
         return new AuthenticationBean("You are authenticated");
     }
 
+    
+    
 
 }
 
