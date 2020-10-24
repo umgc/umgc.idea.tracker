@@ -4,8 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.projecttracker.exception.ResourceNotFoundException;
 import com.example.projecttracker.model.User;
 import com.example.projecttracker.repository.UserRepository;
+import com.example.projecttracker.security.AuthenticationBean;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -28,6 +35,9 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private DataSource dataSource;
+	 
 	
 	//get all user
 	@GetMapping("/user")
@@ -81,5 +91,12 @@ public class UserController {
 				
 	}
 	
+	
+    @GetMapping(path = "/basicauth")
+    public AuthenticationBean basicauth() {
+        return new AuthenticationBean("You are authenticated");
+    }
+
+
 }
 
