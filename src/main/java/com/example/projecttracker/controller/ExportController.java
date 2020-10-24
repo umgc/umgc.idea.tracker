@@ -14,7 +14,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 
 /**
  *
- * @author Kathryn
+ * @author Kathryn - is this controller still in use ?
  */
 public class ExportController {
     
