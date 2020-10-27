@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projecttracker.exception.ResourceNotFoundException;
+import com.example.projecttracker.model.Account;
 import com.example.projecttracker.model.User;
+import com.example.projecttracker.repository.AccountRepository;
 import com.example.projecttracker.repository.UserRepository;
 import com.example.projecttracker.security.AuthenticationBean;
 
@@ -36,24 +38,27 @@ public class UserController {
 	private UserRepository userRepository;
 	
 	@Autowired
+	private AccountRepository accountRepository;
+	
+	@Autowired
 	private DataSource dataSource;
 	 
 	
 	//get all user
 	@GetMapping("/user")
-	public List<User> getAllProject(){
+	public List<User> getAllUser(){
 		
 		return userRepository.findAll();
 	}
 	//create Project
 	@PostMapping("/user")
-	public User createProject(@RequestBody User user) {
+	public User createUser(@RequestBody User user) {
 		
 		return userRepository.save(user);
 	}
 	//get user by id
 	@GetMapping("/user/{id}")
-	public ResponseEntity<User> getProjectById(@PathVariable Long id) {
+	public ResponseEntity<User> getUserById(@PathVariable Long id) {
 		
 		User  user = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id:"+id));
@@ -62,7 +67,7 @@ public class UserController {
 	}
 	//Update user
 	@PutMapping("/user/{id}")
-	public ResponseEntity<User> updateProject(@PathVariable Long id, @RequestBody User userDetails){
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
 		
@@ -82,7 +87,7 @@ public class UserController {
 	
 	// delete user
 	@DeleteMapping("/user/{id}")
-	public ResponseEntity <Map<String, Boolean>> deleteProject(@PathVariable Long id){
+	public ResponseEntity <Map<String, Boolean>> deleteUser(@PathVariable Long id){
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
 		userRepository.delete(user);
@@ -99,7 +104,12 @@ public class UserController {
     }
 
     
-    
+    @PostMapping(path = "/createaccount")
+    public Account createAccount(@RequestBody Account account)
+    {
+    	account.setPassword(new BCryptPasswordEncoder().encode(account.getPassword()));
+    	return accountRepository.save(account);
+    }
 
 }
 

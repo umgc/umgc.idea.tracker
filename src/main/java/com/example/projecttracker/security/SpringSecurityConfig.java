@@ -34,8 +34,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
         .dataSource(dataSource)
         .passwordEncoder(passwordEncoder())
-        .usersByUsernameQuery("SELECT username, password, enabled FROM account WHERE username = ?")
-        .authoritiesByUsernameQuery("select account.username, usr_type.utype_descr from users inner join account on users.account_id = account.id inner join usr_type  on users.user_type = usr_type.id where account.username = ?");
+        .usersByUsernameQuery("SELECT username, password, enabled "
+        		+ "FROM account "
+        		+ "WHERE username = ?")
+        .authoritiesByUsernameQuery("select account.username, usr_type.utype_descr "
+        		+ "from users "
+        		+ "inner join account on users.id = account.user_id "
+        		+ "inner join usr_type on users.user_type = usr_type.id "
+        		+ "where account.username = ?");
         
         
         
@@ -58,12 +64,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 	// --- working with angular
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().
-        disable()
+    protected void configure(HttpSecurity http) throws Exception {        
+        http.csrf(). disable()
+//        	.antMatcher("/api/v1/faq").
             .authorizeRequests()
-            .antMatchers(HttpMethod.OPTIONS, "/**")
-            .permitAll()
+            .antMatchers(HttpMethod.GET,"/api/v1/faq").permitAll()
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()
