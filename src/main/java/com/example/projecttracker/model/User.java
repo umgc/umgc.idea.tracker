@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -49,8 +50,12 @@ public class User {
 	
 	@Column(name ="empl_id")
 	private String empl_id;
+	
+	@OneToOne
+	@JoinColumn(name="id", unique=true, nullable=true, updatable=false)
+	private Account account;
 	  
-
+	
 	public User(String first_name, String last_name, String phone_number, String email, long user_type, String title,
 			String website, String empl_id) {
 		super();
