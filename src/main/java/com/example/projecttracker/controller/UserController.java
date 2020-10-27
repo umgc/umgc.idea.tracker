@@ -75,8 +75,9 @@ public class UserController {
 		user.setLast_name(userDetails.getLast_name());
 		user.setPhone_number(userDetails.getPhone_number());
 		user.setEmail(userDetails.getEmail());
-		user.setUser_type(userDetails.getUser_type());
+//		user.setUsr_type(userDetails.getUser_type());
 		user.setTitle(userDetails.getTitle());
+//		user.setUsr_type(userDetails.getUser().getUsr_type());
 		
 		
 		
