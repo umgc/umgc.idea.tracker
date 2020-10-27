@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -38,13 +39,23 @@ public class User {
 	@Column(name ="email")
 	private String email;
 	
+	@Column(name ="user_type")
+	private long user_type;
 		
 	@Column(name ="title")
 	private String title;
 	
+	@Column(name ="website")
+	private String website;
 	
+	@Column(name ="empl_id")
+	private String empl_id;
+	
+	@OneToOne
+	@JoinColumn(name="id", unique=true, nullable=true, updatable=false)
+	private Account account;
 	  
-
+	
 	public User(long id, String first_name, String last_name, String phone_number, String email, String title,
 			Usr_Type usr_Type) {
 		super();
@@ -53,21 +64,26 @@ public class User {
 		this.last_name = last_name;
 		this.phone_number = phone_number;
 		this.email = email;
+							 
 		this.title = title;
 		this.usr_Type = usr_Type;
+						 
+  
 	}
-
-//	public User(String first_name, String last_name, String phone_number, String email, long user_type, String title,
-//			String website, String empl_id) {
-//		super();
-//		this.first_name = first_name;
-//		this.last_name = last_name;
-//		this.phone_number = phone_number;
-//		this.email = email;
-//		
-//		this.title = title;
-//		
-//	}
+  
+	public User(String first_name, String last_name, String phone_number, String email, long user_type, String title,
+			String website, String empl_id) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.phone_number = phone_number;
+		this.email = email;
+		this.user_type = user_type;
+		this.title = title;
+		this.website = website;
+		this.empl_id = empl_id;
+		
+	}
 	
 	public User() {
 		
@@ -113,7 +129,14 @@ public class User {
 		this.email = email;
 	}
 
-	
+	public long getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(long user_type) {
+		this.user_type = user_type;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -121,6 +144,28 @@ public class User {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getEmpl_id() {
+		return empl_id;
+	}
+
+	public void setEmpl_id(String empl_id) {
+		this.empl_id = empl_id;
+	}
+		
+		@Override
+		public String toString() {
+			return String.format(
+					"User [U_ID=%s, firstName=%s, lastName=%s, phoneNumber=%s, email=%s, userType=%s, Title=%s, Website=%s, emplID=%s]",
+					id, first_name, last_name, phone_number, email, user_type, title, website, empl_id);
+		}
 	//bi-directional many-to-one
 //    @OneToMany(targetEntity = Project.class,cascade = CascadeType.ALL)
 //    @JoinColumn(name ="up_fk",referencedColumnName = "id")
@@ -134,8 +179,9 @@ public class User {
 //		this.projects = projects;
 //	}   
 //	    
+	
 	@ManyToOne(targetEntity = Usr_Type.class)
-    @JoinColumn(name ="uu_fk",referencedColumnName = "id")
+  @JoinColumn(name ="uu_fk",referencedColumnName = "id")
 	private Usr_Type usr_Type;
 	
 	
@@ -147,7 +193,7 @@ public class User {
 	public void setUsr_Type(Usr_Type usr_Type) {
 		this.usr_Type = usr_Type;
 	}
-	
 		
 	
+
 }
