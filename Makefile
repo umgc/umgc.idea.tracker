@@ -90,3 +90,33 @@ clean:
 push:
 	docker tag $(APP_IMG) $(REMOTE_IMG)
 	docker push $(REMOTE_IMG)
+
+##############################################################
+#	make deploy:
+#		This deploys a given VLOL application to an Azure 
+#		container instances. This need to be done within the
+#		build-env Docker container unless user have azure-cli 
+#		installed
+#			Optional CLI: REMOTE_IMG=<docker-hub-image>
+#
+##############################################################
+deploy:
+	docker run -v $(PWD)/:/repo --entrypoint '/bin/bash' $(BUILD_IMG) \
+		-c 'cd /repo && az login && az group create --name devTestGroup --location eastus && \
+			az deployment group create --resource-group devTestGroup \
+			--template-file azure/deploy-template.json \
+			--parameter azure/deploy-parameters.json \
+			--parameter imageName=$(REMOTE_IMG) \
+			--parameter dnsNameLabel=$(UUID)' 
+	@$(info $(REMOTE_IMG) deployed to $(UUID).eastus.azurecontainer.io)
+	@$(info This may take a few minutes to respond)
+
+
+##############################################################
+#	make stop-deploy:
+#		This stops the Azure container instances.
+#
+##############################################################
+stop-deploy:
+	docker run -v $(PWD)/:/repo --entrypoint '/bin/bash' $(BUILD_IMG) \
+		-c 'cd /repo && az login && az group delete --name devTestGroup --yes'
