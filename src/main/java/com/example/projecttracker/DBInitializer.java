@@ -44,9 +44,10 @@ public class DBInitializer implements ApplicationRunner {
 		}
 		if(userTypeRepository.count()==0)
 		{
-			userTypeRepository.save(new Usr_Type(1, "PROFESSOR"));
+			userTypeRepository.save(new Usr_Type(1, "SPONSOR"));
 			userTypeRepository.save(new Usr_Type(2, "LIASION"));
-			userTypeRepository.save(new Usr_Type(3, "SPONSOR"));
+			userTypeRepository.save(new Usr_Type(3, "OTHER"));
+
 		}
 		if(userRepository.count() == 0)
 		{
