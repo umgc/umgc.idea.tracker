@@ -61,7 +61,7 @@ sonar:
 ##############################################################
 image: target/$(CAPPMS_JAR)
 	cp target/$(CAPPMS_JAR) ./$(CAPPMS_JAR)
-	docker build -f ./docker/Dockerfile --build-arg VERSION=$(VERSION) \
+	docker build --ulimit nofile=1024 -f ./docker/Dockerfile --build-arg VERSION=$(VERSION) \
 		--build-arg CAPPMS_APP=$(CAPPMS_JAR) -t $(APP_IMG) .
 	rm -rf ./$(CAPPMS_JAR)
 
