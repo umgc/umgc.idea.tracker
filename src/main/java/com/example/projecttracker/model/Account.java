@@ -39,6 +39,11 @@ public class Account
 		this.user_id = user_id;
 	}
 	
+	public Account()
+	{
+		super();
+	}
+	
 	
 	public long getId() {
 		return id;
