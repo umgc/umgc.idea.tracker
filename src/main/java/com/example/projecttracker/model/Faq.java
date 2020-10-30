@@ -23,7 +23,7 @@ public class Faq {
 	
 	
 	public Faq() {
-		super();
+		
 	}
 	
 	public Faq(String faqQuestion, String faqAnswer) {
@@ -31,15 +31,6 @@ public class Faq {
 		this.faqQuestion = faqQuestion;
 		this.faqAnswer = faqAnswer;
 	}
-	
-	public Faq(long id, String faqQuestion, String faqAnswer) {
-		super();
-		this.id = id;
-		this.faqQuestion = faqQuestion;
-		this.faqAnswer = faqAnswer;
-	}
-	
-	
 	public long getId() {
 		return id;
 	}

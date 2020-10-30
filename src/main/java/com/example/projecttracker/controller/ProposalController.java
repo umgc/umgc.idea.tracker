@@ -73,6 +73,7 @@ public class ProposalController {
 			Project project = projectRepository.findById(id)
 					.orElseThrow(() -> new ResourceNotFoundException("Project not exist with id :" + id));
 			
+			project.getUser().setUsr_Type(projectDetails.getProject().getUser().getUsr_Type());
 			project.setProject_title(projectDetails.getProject().getProject_title());
 			project.setProject_description(projectDetails.getProject().getProject_description());
 			project.setProject_website(projectDetails.getProject().getProject_website());
@@ -82,7 +83,9 @@ public class ProposalController {
 			project.getUser().setLast_name(projectDetails.getProject().getUser().getLast_name());
 			project.getUser().setPhone_number(projectDetails.getProject().getUser().getPhone_number());
 			project.getUser().setTitle(projectDetails.getProject().getUser().getTitle());
-			project.getUser().setUser_type(projectDetails.getProject().getUser().getUser_type());
+	
+			project.setStatus(projectDetails.getProject().getStatus());
+			
 			
 			
 			
