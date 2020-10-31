@@ -47,9 +47,26 @@ public class UserController {
 	//get all user
 	@GetMapping("/user")
 	public List<User> getAllUser(){
-		
 		return userRepository.findAll();
 	}
+	
+	//get user by email address
+	@GetMapping("/userbyEmail/{email}")
+	public ResponseEntity<User> getUserByEmail(@PathVariable String email){
+		User user = null;
+		System.out.println("email entered" + email);
+		List<User> allUsers = userRepository.findAll();
+		for (User user2 : allUsers) {
+			if(user2.getEmail() != null && user2.getEmail().equals(email))
+			{
+				System.out.println(user2.getEmail());
+				return ResponseEntity.ok(user2);
+			}
+		}
+		return ResponseEntity.ok(user);
+	}
+
+	
 	//create Project
 	@PostMapping("/user")
 	public User createUser(@RequestBody User user) {
