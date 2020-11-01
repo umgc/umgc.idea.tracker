@@ -27,7 +27,7 @@ public class Account
 	@Column(name = "enabled")
 	private Boolean isEnabled;
 	
-	@Column
+	@Column(name = "user_id")
 	private long user_id;
 	
 	public Account(String username, String password, boolean enabled, long user_id)
@@ -82,6 +82,14 @@ public class Account
 
 	public void setIsEnabled(Boolean isEnabled) {
 		this.isEnabled = isEnabled;
+	}
+
+	public long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
 	}
 
 

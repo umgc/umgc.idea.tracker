@@ -70,7 +70,7 @@ public class UserController {
 	//create Project
 	@PostMapping("/user")
 	public User createUser(@RequestBody User user) {
-		
+		user.setUser_type(user.getUsr_Type().getId());
 		return userRepository.save(user);
 	}
 	//get user by id
