@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Attachment {
 	
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(name ="file_name")

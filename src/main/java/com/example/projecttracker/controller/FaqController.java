@@ -21,7 +21,7 @@ import com.example.projecttracker.model.Faq;
 
 import com.example.projecttracker.repository.FaqRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/")
 public class FaqController {

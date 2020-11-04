@@ -1,5 +1,7 @@
 package com.example.projecttracker.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,16 +49,22 @@ public class Project {
 		this.comment = comment;
 	}
 	
-//	public Project(String project_title, String project_description, String project_website, String comment,
-//			Status status) {
-//		super();
-//		this.project_title = project_title;
-//		this.project_description = project_description;
-//		this.project_website = project_website;
-//		this.comment = comment;
-//		this.status = status;
-//	}
+
 	
+
+public Project(long id, String project_title, String project_description, String project_website, String comment,
+			Status status, User user) {
+		super();
+		this.id = id;
+		this.project_title = project_title;
+		this.project_description = project_description;
+		this.project_website = project_website;
+		this.comment = comment;
+		this.status = status;
+		this.user = user;
+	}
+
+
 
 	public Project(String project_title, String project_description, String project_website, String comment,
 			User user) {
@@ -65,7 +73,7 @@ public class Project {
 		this.project_description = project_description;
 		this.project_website = project_website;
 		this.comment = comment;
-//		this.status = status;
+		//this.status = status;
 		this.user = user;
 	}
 
@@ -103,14 +111,27 @@ public class Project {
 		this.comment = comment;
 	}
 	
-//	@ManyToOne(targetEntity = Status.class,cascade = CascadeType.ALL)
-//    @JoinColumn(name ="sp_fk",referencedColumnName = "id")
-//	private Status status;
+	@ManyToOne(targetEntity = Status.class)
+    @JoinColumn(name ="sp_fk",referencedColumnName = "id")
+	private Status status;
 	
 	@ManyToOne(targetEntity = User.class,cascade = CascadeType.ALL)
     @JoinColumn(name ="up_fk",referencedColumnName = "id")
 	private User user;
 	
+	@OneToMany(targetEntity = Attachment.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="pa_fk",referencedColumnName = "id")
+	private List<Attachment> attachments;
+
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+
+
+
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
+	}
 	
 	
 
@@ -128,13 +149,13 @@ public class Project {
 
 
 
-//	public Status getStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(Status status) {
-//		this.status = status;
-//	}
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 	
 	
 

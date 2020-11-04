@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projecttracker.dto.StatusProjectRequest;
-import com.example.projecttracker.dto.StatusProjectResponse;
+
 import com.example.projecttracker.dto.Usr_TypeUsersRequest;
-import com.example.projecttracker.dto.Usr_TypeUsersResponse;
+
 
 import com.example.projecttracker.exception.ResourceNotFoundException;
 import com.example.projecttracker.model.Status;
@@ -29,7 +29,7 @@ import com.example.projecttracker.repository.Usr_TypeRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/cappms")
+@RequestMapping("/api/v1/")
 public class Usr_TypeController {
 	
 	@Autowired

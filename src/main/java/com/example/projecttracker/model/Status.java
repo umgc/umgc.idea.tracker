@@ -29,28 +29,58 @@ public class Status {
 		this.status_descr = status_descr;
 	}
 	
+	
+	
+	
+	
+	public Status(long id, String status_descr) {
+		super();
+		this.id = id;
+		this.status_descr = status_descr;
+	}
+
+
+
+
+
 	public Status() {
 		
 	}
 	
 	
+	public long getId() {
+		return id;
+	}
+
+
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+
+
 	public String getStatus_descr() {
 		return status_descr;
 	}
 	public void setStatus_descr(String status_descr) {
 		this.status_descr = status_descr;
 	}
-	@OneToMany(targetEntity = Project.class,cascade = CascadeType.ALL)
-    @JoinColumn(name ="sp_fk",referencedColumnName = "id")
-	private List<Project> projects;
-
-
-	public List<Project> getProjects() {
-		return projects;
-	}
-
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
+//	@OneToMany(targetEntity = Project.class,cascade = CascadeType.ALL)
+//    @JoinColumn(name ="sp_fk",referencedColumnName = "id")
+//	private List<Project> projects;
+//
+//
+//	public List<Project> getProjects() {
+//		return projects;
+//	}
+//
+//	public void setProjects(List<Project> projects) {
+//		this.projects = projects;
+//	}
 
 }
